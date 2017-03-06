@@ -19,7 +19,7 @@ import java.util.logging.Level;
  *
  * @author Cristina
  */
-public class TestWebServer {
+public class WebServer {
 
     public static OkHttpClient webClient = new OkHttpClient();
     
@@ -143,9 +143,9 @@ public class TestWebServer {
             String response_string = response.body().string();//y este seria el string de las respuesta
             return response_string;
         } catch (MalformedURLException ex) {
-            java.util.logging.Logger.getLogger(TestWebServer.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WebServer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(TestWebServer.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WebServer.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
