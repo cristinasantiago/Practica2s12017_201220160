@@ -16,7 +16,7 @@ public class Practica2EDD_201220160 {
     public static void main(String[] args) {
         PantallaPrincipal principal=new PantallaPrincipal();
         principal.setVisible(true);
-       
+      
     }
     
 }
