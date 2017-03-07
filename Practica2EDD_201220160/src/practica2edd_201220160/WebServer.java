@@ -63,6 +63,24 @@ public class WebServer {
     }
     public static void EliminarLista(String Valor)
     {
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         RequestBody formBody = new FormEncodingBuilder()
                 .add("dato", Valor)
                 .build();

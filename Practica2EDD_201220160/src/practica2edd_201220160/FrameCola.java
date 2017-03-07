@@ -5,12 +5,16 @@
  */
 package practica2edd_201220160;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.RequestBody;
+
 /**
  *
  * @author Cristina
  */
 public class FrameCola extends javax.swing.JFrame {
 
+    conexion con=new conexion();
     /**
      * Creates new form FrameCola
      */
@@ -35,8 +39,18 @@ public class FrameCola extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btPushCola.setText("queue");
+        btPushCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPushColaActionPerformed(evt);
+            }
+        });
 
         btpopCola.setText("dequeue");
+        btpopCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btpopColaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Jokerman", 1, 36)); // NOI18N
         jLabel1.setText("Cola");
@@ -77,6 +91,28 @@ public class FrameCola extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btPushColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPushColaActionPerformed
+            
+        
+        String  dato = txtCola.getText().trim();
+    if(dato.length()!=0){
+    
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("InsertarCola", formBody); 
+        System.out.println(r);
+     
+       txtCola.setText("");
+    }   
+    }//GEN-LAST:event_btPushColaActionPerformed
+
+    private void btpopColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpopColaActionPerformed
+    
+        RequestBody formBody = new FormEncodingBuilder().add("dato", "fff").build();
+        String r = con.getString("EliminarCola", formBody); 
+        System.out.println(r);
+        
+    }//GEN-LAST:event_btpopColaActionPerformed
+    
     /**
      * @param args the command line arguments
      */

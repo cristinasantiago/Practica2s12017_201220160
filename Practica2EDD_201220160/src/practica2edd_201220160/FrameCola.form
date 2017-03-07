@@ -68,11 +68,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="queue"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPushColaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btpopCola">
       <Properties>
         <Property name="text" type="java.lang.String" value="dequeue"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btpopColaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

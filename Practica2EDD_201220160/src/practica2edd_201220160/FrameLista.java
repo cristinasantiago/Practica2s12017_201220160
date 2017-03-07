@@ -5,12 +5,17 @@
  */
 package practica2edd_201220160;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.RequestBody;
+
 /**
  *
  * @author Cristina
  */
 public class FrameLista extends javax.swing.JFrame {
 
+    conexion con=new conexion();
+    
     /**
      * Creates new form FrameLista
      */
@@ -34,6 +39,7 @@ public class FrameLista extends javax.swing.JFrame {
         txtBuscarLista = new javax.swing.JTextField();
         btBuscarLista = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnGrafica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -44,13 +50,35 @@ public class FrameLista extends javax.swing.JFrame {
         });
 
         btAgregarLista.setText("Agregar");
+        btAgregarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregarListaActionPerformed(evt);
+            }
+        });
 
         btBorrarLista.setText("Borrar");
+        btBorrarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBorrarListaActionPerformed(evt);
+            }
+        });
 
         btBuscarLista.setText("Buscar");
+        btBuscarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarListaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Jokerman", 1, 36)); // NOI18N
         jLabel1.setText("Lista");
+
+        btnGrafica.setText("Grafica");
+        btnGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,7 +103,10 @@ public class FrameLista extends javax.swing.JFrame {
                         .addComponent(btAgregarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(134, 134, 134)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(btnGrafica)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,7 +127,9 @@ public class FrameLista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btBuscarLista)
                     .addComponent(txtBuscarLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62))
+                .addGap(18, 18, 18)
+                .addComponent(btnGrafica)
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -105,6 +138,51 @@ public class FrameLista extends javax.swing.JFrame {
     private void txtAgregarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgregarListaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAgregarListaActionPerformed
+
+    private void btAgregarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarListaActionPerformed
+      
+     String  dato = txtAgregarLista.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("Agregar", formBody); 
+        System.out.println(r);
+     
+       txtAgregarLista.setText("");
+             
+              
+      
+    }//GEN-LAST:event_btAgregarListaActionPerformed
+
+    private void btBorrarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarListaActionPerformed
+      
+             String  dato = txtBorrarLista.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("EliminarL", formBody); 
+        System.out.println(r);
+     
+       txtBorrarLista.setText("");
+    }//GEN-LAST:event_btBorrarListaActionPerformed
+
+    private void btBuscarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarListaActionPerformed
+         String  dato = txtBuscarLista.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("BuscarL", formBody); 
+        System.out.println(r);
+     
+       txtBuscarLista.setText("");
+    }//GEN-LAST:event_btBuscarListaActionPerformed
+
+    private void btnGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaActionPerformed
+          RequestBody formBody = new FormEncodingBuilder().add("dato", "Grafica").build();
+        String r = con.getString("GraficaL", formBody); 
+        System.out.println(r);
+        
+    }//GEN-LAST:event_btnGraficaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,6 +223,7 @@ public class FrameLista extends javax.swing.JFrame {
     private javax.swing.JButton btAgregarLista;
     private javax.swing.JButton btBorrarLista;
     private javax.swing.JButton btBuscarLista;
+    private javax.swing.JButton btnGrafica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtAgregarLista;
     private javax.swing.JTextField txtBorrarLista;
