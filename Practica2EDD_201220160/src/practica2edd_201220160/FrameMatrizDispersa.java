@@ -5,12 +5,16 @@
  */
 package practica2edd_201220160;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.RequestBody;
+
 /**
  *
  * @author Cristina
  */
 public class FrameMatrizDispersa extends javax.swing.JFrame {
 
+    conexion con =new conexion();
     /**
      * Creates new form FrameMatrizDispersa
      */
@@ -36,6 +40,7 @@ public class FrameMatrizDispersa extends javax.swing.JFrame {
         btBuscarLdispersa = new javax.swing.JButton();
         txtBuscarDdispersa = new javax.swing.JTextField();
         btBuscarDdispersa = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -43,12 +48,34 @@ public class FrameMatrizDispersa extends javax.swing.JFrame {
         jLabel1.setText("Matriz Dispersa");
 
         btBuscarDispersa.setText("Agregar");
+        btBuscarDispersa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarDispersaActionPerformed(evt);
+            }
+        });
 
         btEliminarDispersa.setText("Eliminar");
+        btEliminarDispersa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarDispersaActionPerformed(evt);
+            }
+        });
 
         btBuscarLdispersa.setText("Buscar Letra");
+        btBuscarLdispersa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarLdispersaActionPerformed(evt);
+            }
+        });
 
         btBuscarDdispersa.setText("Buscar Dominio");
+        btBuscarDdispersa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarDdispersaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Graficar Matriz");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,6 +98,10 @@ public class FrameMatrizDispersa extends javax.swing.JFrame {
                             .addComponent(btEliminarDispersa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btBuscarDispersa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(53, 53, 53))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,11 +124,64 @@ public class FrameMatrizDispersa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscarDdispersa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBuscarDdispersa))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btBuscarDispersaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarDispersaActionPerformed
+        
+              
+     String  dato = txtAgregarDispersa.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("AgregarCorreo", formBody); 
+        System.out.println(r);
+     
+       txtAgregarDispersa.setText("");
+             
+              
+      
+
+    }//GEN-LAST:event_btBuscarDispersaActionPerformed
+
+    private void btBuscarLdispersaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarLdispersaActionPerformed
+                String  dato = txtBuscarLdispersa.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("GraficaPorletras", formBody); 
+        System.out.println(r);
+     
+       txtBuscarLdispersa.setText("");
+    }//GEN-LAST:event_btBuscarLdispersaActionPerformed
+
+    private void btBuscarDdispersaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarDdispersaActionPerformed
+                 String  dato = txtBuscarDdispersa.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("GraficaDominio", formBody); 
+        System.out.println(r);
+     
+       txtBuscarDdispersa.setText("");
+    }//GEN-LAST:event_btBuscarDdispersaActionPerformed
+
+    private void btEliminarDispersaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarDispersaActionPerformed
+             
+             String  dato = txtEliminarDispersa.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("EliminarL", formBody); 
+        System.out.println(r);
+     
+       txtEliminarDispersa.setText("");
+    }//GEN-LAST:event_btEliminarDispersaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,6 +223,7 @@ public class FrameMatrizDispersa extends javax.swing.JFrame {
     private javax.swing.JButton btBuscarDispersa;
     private javax.swing.JButton btBuscarLdispersa;
     private javax.swing.JButton btEliminarDispersa;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtAgregarDispersa;
     private javax.swing.JTextField txtBuscarDdispersa;

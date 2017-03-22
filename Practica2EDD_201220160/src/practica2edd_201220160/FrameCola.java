@@ -35,6 +35,7 @@ public class FrameCola extends javax.swing.JFrame {
         btPushCola = new javax.swing.JButton();
         btpopCola = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnGraficar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,6 +56,13 @@ public class FrameCola extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Jokerman", 1, 36)); // NOI18N
         jLabel1.setText("Cola");
 
+        btnGraficar.setText("Grafica");
+        btnGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,7 +79,10 @@ public class FrameCola extends javax.swing.JFrame {
                         .addComponent(btpopCola, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(btnGraficar)))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,7 +96,9 @@ public class FrameCola extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btPushCola)
                     .addComponent(btpopCola))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGraficar)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,6 +125,13 @@ public class FrameCola extends javax.swing.JFrame {
         System.out.println(r);
         
     }//GEN-LAST:event_btpopColaActionPerformed
+
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+                  RequestBody formBody = new FormEncodingBuilder().add("dato", "Grafica").build();
+        String r = con.getString("GraficaCola", formBody); 
+        System.out.println(r);
+        
+    }//GEN-LAST:event_btnGraficarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -150,6 +170,7 @@ public class FrameCola extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPushCola;
+    private javax.swing.JButton btnGraficar;
     private javax.swing.JButton btpopCola;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtCola;

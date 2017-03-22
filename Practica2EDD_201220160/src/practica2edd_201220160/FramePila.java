@@ -5,11 +5,16 @@
  */
 package practica2edd_201220160;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.RequestBody;
+
 /**
  *
  * @author Cristina
  */
 public class FramePila extends javax.swing.JFrame {
+    
+        conexion con=new conexion();
 
     /**
      * Creates new form FramePila
@@ -31,32 +36,54 @@ public class FramePila extends javax.swing.JFrame {
         btPushPila = new javax.swing.JButton();
         btPopPila = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnGraficaPila = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btPushPila.setText("Push");
+        btPushPila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPushPilaActionPerformed(evt);
+            }
+        });
 
         btPopPila.setText("Pop");
+        btPopPila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPopPilaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Jokerman", 1, 36)); // NOI18N
         jLabel1.setText("Pila");
+
+        btnGraficaPila.setText("Graficar");
+        btnGraficaPila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficaPilaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtpila, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(84, 84, 84)
-                            .addComponent(btPushPila, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btPopPila, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(145, 145, 145)
-                            .addComponent(jLabel1))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtpila, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(btPushPila, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btPopPila, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addComponent(jLabel1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(btnGraficaPila)))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,11 +97,50 @@ public class FramePila extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btPushPila)
                     .addComponent(btPopPila))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGraficaPila)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btPushPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPushPilaActionPerformed
+        
+        
+     String  dato = txtpila.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("InsertarPila", formBody); 
+        System.out.println(r);
+     
+       txtpila.setText("");
+             
+              
+     
+    }//GEN-LAST:event_btPushPilaActionPerformed
+
+    private void btPopPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPopPilaActionPerformed
+        
+              
+             String  dato = txtpila.getText().trim();
+     
+     
+     RequestBody formBody = new FormEncodingBuilder().add("dato", dato).build();
+        String r = con.getString("EliminarPila", formBody); 
+        System.out.println(r);
+     
+       txtpila.setText("");
+
+    }//GEN-LAST:event_btPopPilaActionPerformed
+
+    private void btnGraficaPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaPilaActionPerformed
+                  RequestBody formBody = new FormEncodingBuilder().add("dato", "Grafica").build();
+        String r = con.getString("GraficaPila", formBody); 
+        System.out.println(r);
+        
+    }//GEN-LAST:event_btnGraficaPilaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +180,7 @@ public class FramePila extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPopPila;
     private javax.swing.JButton btPushPila;
+    private javax.swing.JButton btnGraficaPila;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtpila;
     // End of variables declaration//GEN-END:variables
